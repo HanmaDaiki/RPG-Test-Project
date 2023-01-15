@@ -1,12 +1,15 @@
 using UnityEngine;
 
-public class FollowCamera : MonoBehaviour
+namespace ARPG.Core
 {
-    [SerializeField] Transform target;
-
-    void LateUpdate()
+    public class FollowCamera : MonoBehaviour
     {
-        transform.position = target.position;
+        [SerializeField] Transform target;
+
+        void LateUpdate()
+        {
+            transform.position = target.position;
+        }
     }
 }
     

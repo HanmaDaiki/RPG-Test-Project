@@ -1,24 +1,28 @@
 using UnityEngine;
+using ARPG.Movement;
 
-public class PlayerController : MonoBehaviour
+namespace ARPG.Control
 {
-    private void Update() {
-        if (Input.GetMouseButton(0))
-        {
-            MoveToCursor();
+    public class PlayerController : MonoBehaviour
+    {
+        private void Update() {
+            if (Input.GetMouseButton(0))
+            {
+                MoveToCursor();
+            }
+        }
+
+        private void MoveToCursor()
+        { 
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            bool hasHit = Physics.Raycast(ray, out hit);
+            
+            if (hasHit)
+            {
+                GetComponent<Mover>().MoveTo(hit.point);
+            }
+
         }
     }
-
-    private void MoveToCursor()
-    { 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        bool hasHit = Physics.Raycast(ray, out hit);
-        
-        if (hasHit)
-        {
-            GetComponent<Mover>().MoveTo(hit.point);
-        }
-
-  }
 }
